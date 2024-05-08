@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View Roster</title>
+</head>
+<body>
+	<p>
+		<span th:text="${my_roster.teamName}">:</span>
+	</p>
+	<form>
+		<table>
+
+			<tr th:each="entry : ${my_roster.alphaMap}">
+				<td><span>#</span>
+				<td th:text="${entry.key}"></td>
+				<td th:text="${entry.value}">
+			</tr>
+		</table>
+	</form>
+	<p>
+		<a href="../viewStandings">View Standings</a>
+	</p>
+	<p>
+		<a href="../viewAllTeams">View All Teams</a>
+	</p>
+	<p>
+		<a href="../viewAllPlayers">View All Players</a>
+	</p>
+</body>
+</html>

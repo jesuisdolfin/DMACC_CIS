@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert New Contact</title>
+<script>
+	function validate() {
+		
+		// Check that all fields have an entry
+		if(document.myForm.name.value.length == 0 || 
+			document.myForm.relationship.value.length == 0 ||
+			document.myForm.phone.value.length == 0 ||
+			document.myForm.address.street.value.length == 0 ||
+			document.myForm.address.city.value.length == 0 ||
+			document.myForm.address.state.value.length == 0) {
+			alert("Make sure no fields are empty");
+			document.myForm.name.focus();
+			return false;
+		}
+			
+		// Check that correct characters are entered in fields
+// 		if(isNan(document.getElementById("givenName")) != true) {
+// 			alert("No numbers allowed in name");
+// 			document.myForm.name.focus();
+// 			return false;
+// 		}
+// 		if(isNan(document.getElementById("givenRelationship")) != true) {
+// 			alert("No numbers allowed in relationship");
+// 			document.myForm.relationship.focus();
+// 			return false;
+// 		}
+// 		if(isNan(document.getElementById("givenPhone")) == true) {
+// 			alert("Only numbers are allowed in phone, format ##########");
+// 			document.myForm.phone.focus();
+// 			return false;
+// 		}
+// 		if(isNan(document.getElementById("givenCity")) != true) {
+// 			alert("No numbers allowed in city");
+// 			document.myForm.address.city.focus();
+// 			return false;
+// 		}
+// 		if(isNan(document.getElementById("givenState")) != true) {
+// 			alert("No numbers allowed in state");
+// 			document.myForm.address.state.focus();
+// 			return false;
+// 		}
+		return true;
+	}
+</script>
+</head>
+<body>
+	<form name="myForm" th:object="${newContact}" th:action="@{/update/{id}(id=${newContact.id})}"  onsubmit="validate();" method='POST'>
+	Name: <input name="name" id="givenName" size="20" th:field="*{name}"> <br />
+	Relationship: <input name="relationship" id="givenRelationship" size="10" th:field="*{relationship}"> <br />
+	Phone Number: <input name="phone" id="givenPhone" size="20" th:field="*{phone}"> <br />
+	Street: <input name="address.street" id="givenStreet" size="20" th:field="*{address.street}"> <br />
+	City: <input name="address.city" id="givenCity" size="20" th:field="*{address.city}"> <br />
+	State: <input name="address.state" id="givenState" size="20" th:field="*{address.state}"> <br />
+	
+	<input name="submit" type="submit" value="submit"/>
+	</form>
+	
+	<a href="viewAll">View all Contacts</a>
+</body>
+</html>
